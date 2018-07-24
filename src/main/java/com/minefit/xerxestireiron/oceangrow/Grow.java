@@ -19,9 +19,9 @@ public class Grow {
     }
 
     public void growFunction(World world, Block block, Material blockType) {
-        Location bLocation = block.getLocation();
-        int x = (int) bLocation.getX();
-        int z = (int) bLocation.getZ();
+        Location blockLocation = block.getLocation();
+        int x = blockLocation.getBlockX();
+        int z = blockLocation.getBlockZ();
         int growRadius = config.growRadius;
         Random random = new Random(world.getSeed() + x + z);
 
@@ -31,16 +31,17 @@ public class Grow {
                 int clusterRadius = 0;
 
                 Block centerBlock = block.getWorld().getBlockAt(x + x1, 0, z + z1);
+                int clusterChance = random.nextInt(1000);
 
                 if (blockType == Material.KELP_PLANT) {
-                    if (random.nextInt(1000) >= config.kelpClusterFactor) {
+                    if (clusterChance >= config.kelpClusterFactor) {
                         continue;
                     }
 
                     clusterRadius = random.nextInt(config.kelpClusterRadius) + (config.kelpClusterRadius / 2);
                     clusterDensity = config.kelpDensity;
                 } else if (blockType == Material.SEAGRASS) {
-                    if (random.nextInt(1000) >= config.seagrassClusterFactor) {
+                    if (clusterChance >= config.seagrassClusterFactor) {
                         continue;
                     }
 
@@ -50,6 +51,8 @@ public class Grow {
 
                 int lowX = centerBlock.getX() - clusterRadius;
                 int lowZ = centerBlock.getZ() - clusterRadius;
+                int highX = centerBlock.getX() + clusterRadius;
+                int highZ = centerBlock.getZ() + clusterRadius;
                 int clusterDiameter = clusterRadius * 2;
                 int clusterArea = clusterDiameter * clusterDiameter;
                 int finalDensity = (int) (clusterArea * (clusterDensity / 100F));
@@ -62,6 +65,16 @@ public class Grow {
 
                     if (block2.getBiome() != Biome.OCEAN && block2.getBiome() != Biome.DEEP_OCEAN) {
                         continue;
+                    }
+
+                    int limiter = random.nextInt(clusterDiameter);
+
+                    if(limiter > highX - 2 || limiter < lowX + 2 || limiter > highZ - 2 || limiter < lowZ + 2)
+                    {
+                        if(random.nextBoolean())
+                        {
+                            continue;
+                        }
                     }
 
                     Block topSolid = findHighestSolidBlock(block2.getLocation(), 255);
@@ -94,6 +107,7 @@ public class Grow {
                 Ageable kelp = (Ageable) upBlock.getBlockData();
                 kelp.setAge(random.nextInt(23));
                 upBlock.setBlockData(kelp);
+                break;
             } else {
                 upBlock.setType(Material.KELP_PLANT);
             }

@@ -19,11 +19,34 @@ public class Commands implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (arguments[0].equalsIgnoreCase("reload") && player.hasPermission("oceangrow.reload")) {
-            ; // TODO: Reload
-        } else {
-            player.sendMessage("You are not allowed to reload OceanGrow.");
+        if (arguments[0].equalsIgnoreCase("reload")) {
+            if(player.hasPermission("oceangrow.reload"))
+            {
+                ; //TODO: Reload
+            } else {
+                player.sendMessage("You are not allowed to reload OceanGrow.");
+            }
         }
+        else if(arguments[0].equalsIgnoreCase("kelp-wand"))
+        {
+            if(player.hasPermission("oceangrow.usewand"))
+            {
+                ; //TODO: Give wand
+            } else {
+                player.sendMessage("You are not allowed to use that wand.");
+            }
+        }
+        else if(arguments[0].equalsIgnoreCase("seagrass-wand"))
+        {
+            if(player.hasPermission("oceangrow.usewand"))
+            {
+                ; //TODO: Give wand
+            } else {
+                player.sendMessage("You are not allowed to use that wand.");
+            }
+        }
+
+
 
         return true;
     }
