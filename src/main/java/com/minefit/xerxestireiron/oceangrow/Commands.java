@@ -4,7 +4,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 public class Commands implements CommandExecutor {
     private final OceanGrow plugin;
@@ -14,18 +13,17 @@ public class Commands implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] arguments) {
-        if (!command.getName().equalsIgnoreCase("mendthis") || !(sender instanceof Player)) {
+        if (!command.getName().equalsIgnoreCase("oceangrow") || !(sender instanceof Player)) {
             return false;
         }
 
         Player player = (Player) sender;
 
-        if (!player.hasPermission("mendanywhere.mend")) {
-            player.sendMessage("You are not allowed to mend items that way.");
-            return true;
+        if (arguments[0].equalsIgnoreCase("reload") && player.hasPermission("oceangrow.reload")) {
+            ; // TODO: Reload
+        } else {
+            player.sendMessage("You are not allowed to reload OceanGrow.");
         }
-
-        ItemStack objectInHand = player.getInventory().getItemInMainHand();
 
         return true;
     }
