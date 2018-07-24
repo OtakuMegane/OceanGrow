@@ -1,0 +1,12 @@
+grow_radius:
+  default: 25
+  maximum: 100
+cluster_factor:
+  kelp: 3
+  seagrass: 4
+cluster_radius:
+  default: 8
+  maximum: 25
+cluster_density:
+  kelp: 10
+  seagrass: 60

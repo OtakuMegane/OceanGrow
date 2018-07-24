@@ -1,0 +1,21 @@
+name: OceanGrow
+main: com.minefit.xerxestireiron.oceangrow.OceanGrow
+version: 0.9
+api-version: 1.13
+
+commands:
+    oceangrow:
+        description: 'Commands for OceanGrow'
+        usage: /oceangrow
+permissions:
+    oceangrow.*:
+        description: Full access to MendAnywhere commands
+        children:
+            oceangrow.usewand: true
+            oceangrow.setradius: true
+        oceangrow.usewand:
+            description: Can use the wand
+            default: op
+        oceangrow.setradius:
+            description: Can change the wand radius from the default
+            default: op
