@@ -1,6 +1,6 @@
 name: OceanGrow
 main: com.minefit.xerxestireiron.oceangrow.OceanGrow
-version: 0.9.1
+version: 0.9.2
 author: XerxesTireIron
 description: Allows use of a wand to grow kelp and seagrass in oceans
 load: postworld
@@ -9,7 +9,7 @@ api-version: 1.13
 commands:
     oceangrow:
         description: 'Commands for OceanGrow'
-        usage: /oceangrow
+        usage: /oceangrow <reload/kelp-wand/seagrass-wand>
 permissions:
     oceangrow.*:
         description: Full access to OceanGrow commands
@@ -20,5 +20,5 @@ permissions:
             description: Can use the wand
             default: op
         oceangrow.reload:
-            description: Can reload OceanGrow
+            description: Can reload OceanGrow configuration
             default: op

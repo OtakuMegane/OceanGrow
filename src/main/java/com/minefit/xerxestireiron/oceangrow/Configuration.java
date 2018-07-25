@@ -16,13 +16,13 @@ public class Configuration {
     public Configuration(OceanGrow instance) {
         this.plugin = instance;
         ConfigurationSection rawConfig = this.plugin.getConfig();
-        this.growRadius = rawConfig.getInt("grow_radius", 20);
-        this.kelpClusterFactor = rawConfig.getInt("cluster_factor.kelp", 2);
-        this.seagrassClusterFactor = rawConfig.getInt("cluster_factor.kelp", 3);
-        this.kelpClusterRadius = rawConfig.getInt("cluster_radius.kelp", 10);
-        this.seagrassClusterRadius = rawConfig.getInt("cluster_radius.seagrass", 10);
-        this.kelpDensity = rawConfig.getInt("cluster_density.kelp", 20);
-        this.seagrassDensity = rawConfig.getInt("cluster_density.seagrass", 20);
+        this.growRadius = rawConfig.getInt("grow-radius", 20);
+        this.kelpClusterFactor = rawConfig.getInt("cluster-factor.kelp", 2);
+        this.seagrassClusterFactor = rawConfig.getInt("cluster-factor.kelp", 3);
+        this.kelpClusterRadius = rawConfig.getInt("cluster-radius.kelp", 10);
+        this.seagrassClusterRadius = rawConfig.getInt("cluster-radius.seagrass", 10);
+        this.kelpDensity = rawConfig.getInt("cluster-density.kelp", 20);
+        this.seagrassDensity = rawConfig.getInt("cluster-density.seagrass", 20);
 
     }
 }

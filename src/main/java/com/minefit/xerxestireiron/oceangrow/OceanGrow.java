@@ -18,6 +18,12 @@ public class OceanGrow extends JavaPlugin implements Listener {
         getCommand("oceangrow").setExecutor(this.commands);
     }
 
+    public void reload() {
+        this.reloadConfig();
+        this.grow.initConfig();
+    }
+
     public void onDisable() {
+
     }
 }

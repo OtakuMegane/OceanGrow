@@ -12,10 +12,17 @@ import org.bukkit.block.data.Ageable;
 
 public class Grow {
 
-    private final Configuration config;
+    private final OceanGrow plugin;
+    private Configuration config;
 
     public Grow(OceanGrow instance) {
-        this.config = new Configuration(instance);
+        this.plugin = instance;
+        initConfig();
+    }
+
+    public void initConfig() {
+        this.config = null;
+        this.config = new Configuration(this.plugin);
     }
 
     public void growFunction(World world, Block block, Material blockType) {
@@ -30,7 +37,13 @@ public class Grow {
                 int clusterDensity = 0;
                 int clusterRadius = 0;
 
-                Block centerBlock = block.getWorld().getBlockAt(x + x1, 0, z + z1);
+                Location centerLocation = new Location(world, x + x1, 0, z + z1);
+
+                if (!isExistingChunk(centerLocation)) {
+                    continue;
+                }
+
+                Block centerBlock = block.getWorld().getBlockAt(centerLocation);
                 int clusterChance = random.nextInt(1000);
 
                 if (blockType == Material.KELP_PLANT) {
@@ -61,33 +74,37 @@ public class Grow {
                     int xRand = random.nextInt(clusterDiameter);
                     int zRand = random.nextInt(clusterDiameter);
 
-                    Block block2 = block.getWorld().getBlockAt(lowX + xRand, 0, lowZ + zRand);
-
-                    if (block2.getBiome() != Biome.OCEAN && block2.getBiome() != Biome.DEEP_OCEAN) {
+                    Location plantLocation = new Location(world, lowX + xRand, 0, lowZ + zRand);
+                    if (!isExistingChunk(plantLocation)) {
                         continue;
                     }
 
-                    int limiter = random.nextInt(clusterDiameter);
+                    Block testBlock = block.getWorld().getBlockAt(plantLocation);
 
-                    if(limiter > highX - 2 || limiter < lowX + 2 || limiter > highZ - 2 || limiter < lowZ + 2)
-                    {
-                        if(random.nextBoolean())
-                        {
+                    if (testBlock.getBiome() != Biome.OCEAN && testBlock.getBiome() != Biome.DEEP_OCEAN) {
+                        continue;
+                    }
+
+                    int fuzzyEdges = random.nextInt(clusterDiameter);
+
+                    if (fuzzyEdges > highX - 2 || fuzzyEdges < lowX + 2 || fuzzyEdges > highZ - 2
+                            || fuzzyEdges < lowZ + 2) {
+                        if (random.nextBoolean()) {
                             continue;
                         }
                     }
 
-                    Block topSolid = findHighestSolidBlock(block2.getLocation(), 255);
+                    Block plantBlock = findHighestSolidBlock(testBlock.getLocation(), 255);
 
-                    if (topSolid.getType() != Material.SAND && topSolid.getType() != Material.GRAVEL
-                            && topSolid.getType() != Material.DIRT) {
+                    if (plantBlock.getType() != Material.SAND && plantBlock.getType() != Material.GRAVEL
+                            && plantBlock.getType() != Material.DIRT) {
                         continue;
                     }
 
                     if (blockType == Material.KELP_PLANT) {
-                        plantKelp(random, topSolid);
+                        plantKelp(random, plantBlock);
                     } else if (blockType == Material.SEAGRASS) {
-                        plantSeagrass(random, topSolid);
+                        plantSeagrass(random, plantBlock);
                     } else {
                         return;
                     }
@@ -96,8 +113,8 @@ public class Grow {
         }
     }
 
-    public void plantKelp(Random random, Block topSolid) {
-        Block upBlock = topSolid.getRelative(BlockFace.UP);
+    public void plantKelp(Random random, Block plantBlock) {
+        Block upBlock = plantBlock.getRelative(BlockFace.UP);
         int height = random.nextInt(10) + 1;
         int top = upBlock.getY() + height;
 
@@ -116,8 +133,8 @@ public class Grow {
         }
     }
 
-    public void plantSeagrass(Random random, Block topSolid) {
-        Block upBlock = topSolid.getRelative(BlockFace.UP);
+    public void plantSeagrass(Random random, Block plantBlock) {
+        Block upBlock = plantBlock.getRelative(BlockFace.UP);
         if (upBlock.getWorld().getBlockAt(upBlock.getX(), upBlock.getY() + 1, upBlock.getZ())
                 .getType() != Material.WATER) {
             return;
@@ -146,5 +163,9 @@ public class Grow {
         }
 
         return world.getBlockAt(location.getBlockX(), 0, location.getBlockZ());
+    }
+
+    private boolean isExistingChunk(Location location) {
+        return location.getWorld().loadChunk(location.getBlockX() >> 4, location.getBlockZ() >> 4, false);
     }
 }
