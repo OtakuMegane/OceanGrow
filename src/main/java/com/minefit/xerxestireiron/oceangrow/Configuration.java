@@ -25,7 +25,7 @@ public class Configuration {
         ConfigurationSection rawConfig = this.plugin.getConfig();
         this.growRadius = rawConfig.getInt("grow-radius", 20);
         this.kelpClusterFactor = rawConfig.getInt("cluster-factor.kelp", 2);
-        this.seagrassClusterFactor = rawConfig.getInt("cluster-factor.kelp", 3);
+        this.seagrassClusterFactor = rawConfig.getInt("cluster-factor.seagrass", 3);
         this.kelpClusterRadius = rawConfig.getInt("cluster-radius.kelp", 10);
         this.seagrassClusterRadius = rawConfig.getInt("cluster-radius.seagrass", 10);
         this.kelpDensity = rawConfig.getInt("cluster-density.kelp", 20);

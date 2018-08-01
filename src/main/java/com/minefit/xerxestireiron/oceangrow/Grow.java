@@ -30,13 +30,13 @@ public class Grow {
         int x = blockLocation.getBlockX();
         int z = blockLocation.getBlockZ();
         int growRadius = config.growRadius;
-        Random random = new Random(world.getSeed() + x + z);
+        int extraFactor = blockType.name().charAt(0) + blockType.name().length();
+        Random random = new Random(world.getSeed() + x + z + extraFactor);
 
         for (int x1 = 0 - growRadius; x1 <= growRadius; x1++) {
             for (int z1 = 0 - growRadius; z1 <= growRadius; z1++) {
                 int clusterDensity = 0;
                 int clusterRadius = 0;
-
                 Location centerLocation = new Location(world, x + x1, 0, z + z1);
 
                 if (!isExistingChunk(centerLocation)) {

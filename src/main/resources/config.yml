@@ -3,18 +3,18 @@ grow-radius: 20
 
 # Controls the probability a given spot inside the grow_radius will be chosen as a cluster center.
 cluster-factor:
-  kelp: 2
-  seagrass: 15
+  kelp: 5
+  seagrass: 12
 
 # The maximum radius for clusters. Each cluster will be a random size up to this value.
 cluster-radius:
-  kelp: 10
-  seagrass: 6
+  kelp: 6
+  seagrass: 4
 
 # Average density of each cluster.
 cluster-density:
-  kelp: 25
-  seagrass: 90
+  kelp: 35
+  seagrass: 60
 
 # A list of blocks that kelp and seagrass can grow on
 # Must be a string in standard Minecraft ID format
