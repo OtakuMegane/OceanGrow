@@ -31,15 +31,19 @@ public class PlayerListener implements Listener {
             if (usedItem.getType() == Material.STICK) {
                 if (usedItem.getItemMeta().getDisplayName().equals("oceangrow-kelp-wand")) {
                     if (player.hasPermission("oceangrow.usewand")) {
+                        player.sendMessage("Now planting kelp...");
                         this.grow.growFunction(world, block, Material.KELP_PLANT);
+                        player.sendMessage("Done planting kelp!");
                     } else {
-                        player.sendMessage("You are not allowed to use that wand.");
+                        player.sendMessage("You are not allowed to use the kelp wand.");
                     }
                 } else if (usedItem.getItemMeta().getDisplayName().equals("oceangrow-seagrass-wand")) {
                     if (player.hasPermission("oceangrow.usewand")) {
+                        player.sendMessage("Now planting seagrass...");
                         this.grow.growFunction(world, block, Material.SEAGRASS);
+                        player.sendMessage("Done planting seagrass!");
                     } else {
-                        player.sendMessage("You are not allowed to use that wand.");
+                        player.sendMessage("You are not allowed to use the seagrass wand.");
                     }
                 }
             }
