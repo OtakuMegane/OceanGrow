@@ -15,3 +15,9 @@ cluster-radius:
 cluster-density:
   kelp: 25
   seagrass: 90
+  
+grow-blocks:
+  - "minecraft:sand"
+  - "minecraft:gravel"
+  - "minecraft:dirt"
+  - "minecraft:clay"

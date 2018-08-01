@@ -1,5 +1,9 @@
 package com.minefit.xerxestireiron.oceangrow;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class Configuration {
@@ -12,6 +16,7 @@ public class Configuration {
     public final int seagrassClusterRadius;
     public final int seagrassDensity;
     public final int kelpDensity;
+    public final List<NamespacedKey> growBlocks = new ArrayList<>();
 
     public Configuration(OceanGrow instance) {
         this.plugin = instance;
@@ -24,5 +29,8 @@ public class Configuration {
         this.kelpDensity = rawConfig.getInt("cluster-density.kelp", 20);
         this.seagrassDensity = rawConfig.getInt("cluster-density.seagrass", 20);
 
+        for (String string_key : rawConfig.getStringList("grow-blocks")) {
+            this.growBlocks.add(NamespacedKey.minecraft(string_key.substring(string_key.indexOf("minecraft:") + 10)));
+        }
     }
 }

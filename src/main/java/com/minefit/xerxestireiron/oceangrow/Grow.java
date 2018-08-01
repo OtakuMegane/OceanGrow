@@ -75,6 +75,7 @@ public class Grow {
                     int zRand = random.nextInt(clusterDiameter);
 
                     Location plantLocation = new Location(world, lowX + xRand, 0, lowZ + zRand);
+
                     if (!isExistingChunk(plantLocation)) {
                         continue;
                     }
@@ -96,8 +97,7 @@ public class Grow {
 
                     Block plantBlock = findHighestSolidBlock(testBlock.getLocation(), 255);
 
-                    if (plantBlock.getType() != Material.SAND && plantBlock.getType() != Material.GRAVEL
-                            && plantBlock.getType() != Material.DIRT) {
+                    if (!this.config.growBlocks.contains(plantBlock.getType().getKey())) {
                         continue;
                     }
 
