@@ -82,7 +82,7 @@ public class Grow {
 
                     Block testBlock = block.getWorld().getBlockAt(plantLocation);
 
-                    if (testBlock.getBiome() != Biome.OCEAN && testBlock.getBiome() != Biome.DEEP_OCEAN) {
+                    if (!this.config.growBiomes.contains(testBlock.getBiome())) {
                         continue;
                     }
 

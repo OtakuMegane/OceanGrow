@@ -1,6 +1,6 @@
 name: OceanGrow
 main: com.minefit.xerxestireiron.oceangrow.OceanGrow
-version: 0.9.3
+version: 0.9.4
 author: XerxesTireIron
 description: Allows use of a wand to grow kelp and seagrass in oceans
 load: postworld

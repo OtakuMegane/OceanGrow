@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.NamespacedKey;
+import org.bukkit.block.Biome;
 import org.bukkit.configuration.ConfigurationSection;
 
 public class Configuration {
@@ -17,6 +18,7 @@ public class Configuration {
     public final int seagrassDensity;
     public final int kelpDensity;
     public final List<NamespacedKey> growBlocks = new ArrayList<>();
+    public final List<Biome> growBiomes = new ArrayList<>();
 
     public Configuration(OceanGrow instance) {
         this.plugin = instance;
@@ -29,8 +31,14 @@ public class Configuration {
         this.kelpDensity = rawConfig.getInt("cluster-density.kelp", 20);
         this.seagrassDensity = rawConfig.getInt("cluster-density.seagrass", 20);
 
-        for (String string_key : rawConfig.getStringList("grow-blocks")) {
-            this.growBlocks.add(NamespacedKey.minecraft(string_key.substring(string_key.indexOf("minecraft:") + 10)));
+        for (String idString : rawConfig.getStringList("grow-blocks")) {
+            String stringKey = idString.substring(idString.indexOf("minecraft:") + 10);
+            this.growBlocks.add(NamespacedKey.minecraft(stringKey));
+        }
+
+        for (String idString : rawConfig.getStringList("grow-biomes")) {
+            String stringKey = idString.substring(idString.indexOf("minecraft:") + 10);
+            this.growBiomes.add(Biome.valueOf(stringKey.toUpperCase()));
         }
     }
 }

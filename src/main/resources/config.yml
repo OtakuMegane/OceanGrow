@@ -15,9 +15,17 @@ cluster-radius:
 cluster-density:
   kelp: 25
   seagrass: 90
-  
+
+# A list of blocks that kelp and seagrass can grow on
+# Must be a string in standard Minecraft ID format
 grow-blocks:
   - "minecraft:sand"
   - "minecraft:gravel"
   - "minecraft:dirt"
   - "minecraft:clay"
+
+# A list of biomes that kelp and seagrass will grow in
+# Must be a string in standard Minecraft ID format
+grow-biomes:
+  - "minecraft:ocean"
+  - "minecraft:deep_ocean"
