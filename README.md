@@ -8,7 +8,9 @@ A plugin making it easier to grow kelp and seagrass in pre-1.13 oceans.
  
 ## Usage
 To get a wand for growing kelp: `/oceangrow kelp-wand`
+
 To get a wand for growing seagrass: `/oceangrow seagrass-wand`.
+
 To reload the configuration from the current config.yml: `/oceangrow reload`
 
 ## Permissions
