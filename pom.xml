@@ -4,6 +4,7 @@
 	<artifactId>oceangrow</artifactId>
 	<version>1.0</version>
 	<build>
+	    <finalName>OceanGrow-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
