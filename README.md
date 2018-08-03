@@ -1,6 +1,6 @@
 # OceanGrow
 
-A plugin for making it easier to grow kelp and seagrass in pre-1.13 oceans.
+A plugin making it easier to grow kelp and seagrass in pre-1.13 oceans.
 
 ## Installation
  - Put the OceanGrow .jar in the `plugins` directory.
@@ -8,15 +8,13 @@ A plugin for making it easier to grow kelp and seagrass in pre-1.13 oceans.
  
 ## Usage
 To get a wand for growing kelp: `/oceangrow kelp-wand`
-
 To get a wand for growing seagrass: `/oceangrow seagrass-wand`.
-
 To reload the configuration from the current config.yml: `/oceangrow reload`
 
 ## Permissions
 The permissions available for OceanGrow:
- - `oceangrow.usewand`: Allows use of the wands.
- - `oceangrow.reload`: Allows user to reload the configuration from the `config.yml` file.
+ - `oceangrow.usewand`: Allows use of the wands. Defaults to OP-only.
+ - `oceangrow.reload`: Allows user to reload the configuration from the `config.yml` file. Defaults to OP-only.
 
 ## Configuration
 The default config.yml, with notes on what each setting does:
