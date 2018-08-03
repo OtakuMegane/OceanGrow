@@ -7,11 +7,15 @@ A plugin making it easier to grow kelp and seagrass in pre-1.13 oceans.
  - On first load it will place a default `config.yml` in `plugis/OceanGrow`. Edit this if you like.
  
 ## Usage
-To get a wand for growing kelp: `/oceangrow kelp-wand`
+ - To get a wand for growing kelp: `/oceangrow kelp-wand`
 
-To get a wand for growing seagrass: `/oceangrow seagrass-wand`
+ - To get a wand for growing seagrass: `/oceangrow seagrass-wand`
 
-To reload the configuration from the current config.yml: `/oceangrow reload`
+ - To reload the configuration from the current config.yml: `/oceangrow reload`
+ 
+Basically works like bonemeal. Place the wand in your main hand and click somewhere to grow kelp or seagrass. The wand does not have to be used in an ocean biome; using it on land will grow plants in ocean blocks if there are any within part of the radius but will do nothing with the land blocks. The wand can be used at any random location or in a planned grid to neatly fill in large areas.
+
+NOTE: Due to the nature of random numbers, in rare cases you may get little or no kelp or seagrass when using the wand on a given block. If this happens, clicking on an adjacent block will generate a different pattern of plants and fill in the area.
 
 ## Permissions
 The permissions available for OceanGrow:
