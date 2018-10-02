@@ -115,14 +115,15 @@ public class Grow {
 
     public void plantKelp(Random random, Block plantBlock) {
         Block upBlock = plantBlock.getRelative(BlockFace.UP);
+
+        if (!isWater(upBlock)) {
+            return;
+        }
+
         int height = random.nextInt(10) + 1;
         int top = upBlock.getY() + height;
 
         while (upBlock.getY() <= top) {
-            if (!isWater(upBlock)) {
-                return;
-            }
-
             if (upBlock.getY() == top || !isWater(upBlock.getRelative(BlockFace.UP))) {
                 upBlock.setType(Material.KELP);
                 Ageable kelp = (Ageable) upBlock.getBlockData();
