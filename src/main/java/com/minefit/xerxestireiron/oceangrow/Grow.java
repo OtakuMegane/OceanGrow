@@ -119,7 +119,11 @@ public class Grow {
         int top = upBlock.getY() + height;
 
         while (upBlock.getY() <= top) {
-            if (upBlock.getY() == top || upBlock.getRelative(BlockFace.UP).getType() != Material.WATER) {
+            if (!isWater(upBlock)) {
+                return;
+            }
+
+            if (upBlock.getY() == top || !isWater(upBlock.getRelative(BlockFace.UP))) {
                 upBlock.setType(Material.KELP);
                 Ageable kelp = (Ageable) upBlock.getBlockData();
                 kelp.setAge(random.nextInt(23));
@@ -167,5 +171,9 @@ public class Grow {
 
     private boolean isExistingChunk(Location location) {
         return location.getWorld().loadChunk(location.getBlockX() >> 4, location.getBlockZ() >> 4, false);
+    }
+
+    private boolean isWater(Block block) {
+        return block.getType() == Material.WATER;
     }
 }
